@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.ItemDao">
+    <select id="listItems" resultType="com.qf.pojo.po.Item">
+         SELECT id,`name`,path,url,info,update_time,cname
+         FROM item,category
+         WHERE item.cid=category.cid
+    </select>
+
+    <!--项目分页-->
+    <select id="pageListItem" resultType="com.qf.pojo.po.Item">
+        select id,`name`,path,url,info,update_time,cname
+        from item,category
+        WHERE item.cid=category.cid
+        limit #{offset},#{pageSize}
+    </select>
+    <!--删除单个项目-->
+    <delete id="removeItemById" parameterType="int">
+         delete from item where id=#{id}
+    </delete>
+
+    <!--插入项目-->
+    <insert id="insertItem" keyProperty="id" parameterType="com.qf.pojo.po.Item">
+        insert into
+        item(name,url,path,info,cid)
+        values(#{name},#{url},#{path},#{info},#{cname})
+    </insert>
+
+    <select id="getItemById" parameterType="int" resultType="com.qf.pojo.po.Item">
+        select id,`name`,path,url,info,update_time,item.cid
+        from item,category
+        WHERE item.cid=category.cid
+        and id=#{id}
+    </select>
+
+    <update id="updateItem" parameterType="com.qf.pojo.po.Item">
+        update item
+        set `name`=#{name},url=#{url},info=#{info},cid=#{cid}
+        where id=#{id}
+    </update>
+</mapper>
