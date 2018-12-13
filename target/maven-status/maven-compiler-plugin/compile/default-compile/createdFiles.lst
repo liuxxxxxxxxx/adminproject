@@ -1,3 +1,4 @@
+com\qf\mvc\IndexAction.class
 com\qf\pojo\po\User.class
 com\qf\service\Impl\ItemServiceImpl.class
 com\qf\mvc\ItemAction.class

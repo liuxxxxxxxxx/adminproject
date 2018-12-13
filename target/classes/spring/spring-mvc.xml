@@ -23,4 +23,8 @@
         <property name="maxInMemorySize" value="4096" />
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
+
+    <mvc:resources location="/static/css/" mapping="/static/css/**"/>
+    <mvc:resources location="/static/img/" mapping="/static/img/**" />
+    <mvc:resources location="/static/js/" mapping="/static/js/**" />
 </beans>
